@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_bonus.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klakbuic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: khalid <khalid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:36:38 by klakbuic          #+#    #+#             */
-/*   Updated: 2024/01/26 11:39:34 by klakbuic         ###   ########.fr       */
+/*   Updated: 2024/01/26 15:49:07 by khalid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,20 @@ static void	ft_receive(int signal, siginfo_t *info, void *context)
 {
 	static unsigned char	byte;
 	unsigned char			bit;
-	static unsigned int		count_bits = 8;
+	static unsigned int		count_bits;
 
-	(void) context;
-	if (signal == SIGUSR1)
-		bit = 1;
-	else
-		bit = 0;
-	count_bits--;
+	(void) context;		
+	bit = (signal == SIGUSR1);
+	count_bits++;
 	byte = (byte << 1) | bit;
-	if (count_bits <= 0)
+	if (count_bits  == 8)
 	{
+		if (byte == '\0')
+			kill(info->si_pid, SIGUSR1);
 		write(1, &byte, 1);
-		if (kill(info->si_pid, SIGUSR1) == -1)
-			ft_error("Error: Server failed to send SIGUSR1");
 		byte = 0;
-		count_bits = 8;
+		count_bits = 0;
 	}
-	if (kill(info->si_pid, SIGUSR2) == -1)
-		ft_error("Error: Server failed to send SIGUSR2");
 }
 
 static void	set_signal_action(void)
