@@ -6,7 +6,7 @@
 /*   By: khalid <khalid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/26 11:13:05 by klakbuic          #+#    #+#             */
-/*   Updated: 2024/01/26 15:21:15 by khalid           ###   ########.fr       */
+/*   Updated: 2024/01/26 16:24:04 by khalid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	sig_handler(int signum)
 {
 	if (signum == SIGUSR1)
-		write(1, "Character has been sucessfully send!\n", 38);
+		write(1, "Message has been sucessfully send!\n", 36);
 }
 
 void	set_signal_action_client(void)

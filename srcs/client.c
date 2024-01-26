@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klakbuic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: khalid <khalid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:36:35 by klakbuic          #+#    #+#             */
-/*   Updated: 2024/01/26 11:41:13 by klakbuic         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:13:30 by khalid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	ft_send_bit(unsigned char c, pid_t pid)
 {
 	unsigned char	bit;
 
-	bit = 0;
 	bit = c & 1;
 	if (bit == 1)
 	{
@@ -34,7 +33,7 @@ static void	ft_send_bit(unsigned char c, pid_t pid)
 			exit(EXIT_FAILURE);
 		}
 	}
-	usleep(50);
+	usleep(500);
 }
 
 static void	ft_send_byte(unsigned char c, pid_t pid)
@@ -65,7 +64,7 @@ static void	ft_args_check(int ac, char **av)
 	if (ac != 3)
 	{
 		ft_putendl_fd("Error: wrong format.", STDOUT_FILENO);
-		ft_putendl_fd("[Example: ./client <PID> <MESSAGE>", STDOUT_FILENO);
+		ft_putendl_fd("Example: ./client <PID> <MESSAGE>", STDOUT_FILENO);
 		exit(EXIT_FAILURE);
 	}
 	if (*av[2] == '\0')

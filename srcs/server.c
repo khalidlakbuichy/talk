@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: klakbuic <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: khalid <khalid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:36:38 by klakbuic          #+#    #+#             */
-/*   Updated: 2024/01/26 11:20:13 by klakbuic         ###   ########.fr       */
+/*   Updated: 2024/01/26 16:11:49 by khalid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,6 @@ static void	set_signal_action(void)
 	struct sigaction sa;
 
 	sa.sa_handler = &ft_receive;
-	if (sigemptyset(&sa.sa_mask) == -1)
-	{
-		ft_putendl_fd("Error: initialize and empty a signal set",
-			STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
 	if (sigaction(SIGUSR1, &sa, NULL) == -1)
 	{
 		ft_putendl_fd("Error: setting up SIGUSR1 handler", STDERR_FILENO);

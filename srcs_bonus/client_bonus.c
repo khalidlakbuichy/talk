@@ -6,12 +6,12 @@
 /*   By: khalid <khalid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/24 10:36:35 by klakbuic          #+#    #+#             */
-/*   Updated: 2024/01/26 15:51:03 by khalid           ###   ########.fr       */
+/*   Updated: 2024/01/26 16:23:39 by khalid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../inc/minitalk.h"
-// 
+
 static void	ft_send_bit(unsigned char c, pid_t pid)
 {
 	unsigned char	bit;
@@ -77,7 +77,7 @@ static void	ft_args_check(int ac, char **av)
 	i = -1;
 	while (av[1][++i] != '\0')
 	{
-		if (ft_isdigit(av[1][i]) == 0)
+		if (!ft_isdigit(av[1][i]))
 		{
 			ft_putendl_fd("Error: wrong pid", STDOUT_FILENO);
 			exit(EXIT_FAILURE);
